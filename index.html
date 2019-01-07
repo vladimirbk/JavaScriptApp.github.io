@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Quizzie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Condensed" rel="stylesheet">
+    <link rel="icon" href="images/favicons/favicon-16x16.png" type="image/png">
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <a href="index.html"> <div class="logo"></div> </a>
+        <span class="title">Quizzie</span>
+      </header>
+
+      <main>
+        <div class="column">
+          <div class="headline-left">
+          <span class="headline">Couple of questions to go:</span>
+          </div>
+          <div id="quiz"><img src="images/loader.gif" /></div>
+          <div id="results"></div>
+          <button id="submit">Submit</button>
+          <button id="save">Save</button>           
+          <button id="new">New quiz</button>
+        </div>
+        <div class="column">
+            That simple application is a final project for course 4IZ268 Web Applications winter semester 2018/2019
+            <h5>Tell about us</h5>
+            <button id="share">Share</button>
+        </div>
+        <div class="alert-window">
+          <div class="alert-window-content">
+            <span class="close">&times;</span>
+            <p class="alert-window-text"></p>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+            <p class="copyright">Created by Vladimir Badashkhanov <br> &copy;2018</p>
+        </footer>
+    </div>
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
