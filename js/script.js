@@ -27,7 +27,7 @@ var initiateQuiz = function(){
             for (letter in currentQuestion.answers){
                 answers.push(
                     `<label>
-                        <input type="checkbox" name="question${questionNumber}" class="disableMe" value="${letter}">
+                        <input type="checkbox" name="question${questionNumber}" class="clearMe" value="${letter}">
                         ${currentQuestion.answers[letter]}
                     </label>`
                 );
@@ -70,11 +70,14 @@ var getResults = function(){
             answerContainer.style.color = "red";
         }
     });
-
+    
+    resultsContainer.innerHTML = "Your result is: <strong>" +
+        numCorrect + " out of " + listOfQuestions.length + "</strong";
+    clearInputs();
 };
 
-var disableInputs = function(){
-    $(".disableMe").prop("disabled", true);
+var clearInputs = function(){
+    $(".clearMe").prop("disabled", true);
 };
 
 var share = function() {
