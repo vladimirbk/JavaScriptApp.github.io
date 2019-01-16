@@ -1,18 +1,15 @@
-//https://api.myjson.com/bins/min54
 const quizContainer = document.querySelector("#quiz");
 const resultsContainer = document.querySelector("#results");
 const newButton = document.querySelector("#new");
 const submitButton = document.querySelector("#submit");
 const shareButton = document.querySelector("#share");
 const saveButton = document.querySelector("#save");
-var alertWindow = document.querySelector(".alert-window");
-var closeWindow = document.querySelectorAll(".close")[0];
-var message = document.querySelector(".alert-window-text");
 var listOfQuestions = [];
+let numCorrect = 0;
 
 var initiateQuiz = function(){
     var jQuiz = new XMLHttpRequest();
-    jQuiz.open("GET", "https://api.myjson.com/bins/min54");
+    jQuiz.open("GET", "https://api.myjson.com/bins/i90a0");
     jQuiz.addEventListener("load", function(){
         var data = JSON.parse(jQuiz.responseText);
         
@@ -52,8 +49,7 @@ var getResults = function(){
     }
     
     var answerContainers = quizContainer.querySelectorAll(".answers");
-    var numCorrect = 0;
-    
+    var corNum = numCorrect;
     listOfQuestions.forEach((currentQuestion, questionNumber) => {
         var answerContainer = answerContainers[questionNumber];
         var checkedQues = [];
@@ -65,6 +61,7 @@ var getResults = function(){
         checkedQues.sort();
         if(checkedQues.toString() === currentQuestion.correctAnswer.toString()){
             numCorrect++;
+
             answerContainer.style.color = "lightgreen";
         }else{
             answerContainer.style.color = "red";
@@ -90,10 +87,51 @@ var share = function() {
     var via = "vladimirbk16";
     url=url + "?text=" + text + ";via=" + via;
     
-    window.open(url, "Share your results on twitter", "width=450,heght=250");
+    window.open(url, "Share your results on twitter", "width=450,height=250");
 };
 
+var save = function(){
+    var person = prompt("Please enter your name");
+    
+    saveName = JSON.parse(localStorage.getItem('saveName')) || [];
+    
+    newPlayer = {
+        user: person,
+        result: numCorrect
+    }
+    
+    saveName.push(newPlayer);
+    
+    if(person == null){
+        alert("Enter your name");
+    }else{
+        localStorage.setItem('personName', JSON.stringify(saveName));
+        document.getElementById('showTable').style.display='table';
+        buildTable();
+    }
+}
+
+function buildTable(){
+    let table = document.getElementById("list");
+    table.createTHead();
+    table.innerHTML="<th>Player</th><th>Score</th>";
+    let scores= JSON.parse(localStorage.getItem('personName'));
+    let rowNumber = 1;
+    for(let helper in scores){
+        let row = table.insertRow(rowNumber);
+        let cell2 = row.insertCell(0);
+        let cell3 = row.insertCell(1);
+        
+        cell2.innerText = scores[helper].user;
+        cell3.innerHTML = scores[helper].result;
+        
+        rowNumber++;
+    }
+}
+
+buildTable();
 initiateQuiz();
 submitButton.addEventListener("click", getResults);
 newButton.addEventListener("click", initiateQuiz);
 shareButton.addEventListener("click", share);
+saveButton.addEventListener("click", save);
