@@ -93,7 +93,7 @@ var share = function() {
 var save = function(){
     var person = prompt("Please enter your name");
     
-    saveName = JSON.parse(localStorage.getItem('saveName')) || [];
+    saveName = JSON.parse(localStorage.getItem('personName')) || [];
     
     newPlayer = {
         user: person,
@@ -102,28 +102,24 @@ var save = function(){
     
     saveName.push(newPlayer);
     
-    if(person == null){
-        alert("Enter your name");
-    }else{
-        localStorage.setItem('personName', JSON.stringify(saveName));
-        document.getElementById('showTable').style.display='table';
-        buildTable();
-    }
+    localStorage.setItem('personName', JSON.stringify(saveName));
+    buildTable();
+    
 }
 
 function buildTable(){
     let table = document.getElementById("list");
     table.createTHead();
     table.innerHTML="<th>Player</th><th>Score</th>";
-    let scores= JSON.parse(localStorage.getItem('personName'));
-    let rowNumber = 1;
-    for(let helper in scores){
+    let resultsHelper= JSON.parse(localStorage.getItem('personName'));
+    var rowNumber = 1;
+    for(let helper in resultsHelper){
         let row = table.insertRow(rowNumber);
         let cell2 = row.insertCell(0);
         let cell3 = row.insertCell(1);
         
-        cell2.innerText = scores[helper].user;
-        cell3.innerHTML = scores[helper].result;
+        cell2.innerText = resultsHelper[helper].user;
+        cell3.innerHTML = resultsHelper[helper].result;
         
         rowNumber++;
     }
