@@ -5,11 +5,11 @@ const submitButton = document.querySelector("#submit");
 const shareButton = document.querySelector("#share");
 const saveButton = document.querySelector("#save");
 var listOfQuestions = [];
-let numCorrect = 0;
+        let numCorrect = 0;
 
 var initiateQuiz = function(){
     var jQuiz = new XMLHttpRequest();
-    jQuiz.open("GET", "https://api.myjson.com/bins/i90a0");
+    jQuiz.open("GET", "https://api.myjson.com/bins/j5bxo");
     jQuiz.addEventListener("load", function(){
         var data = JSON.parse(jQuiz.responseText);
         
@@ -39,6 +39,7 @@ var initiateQuiz = function(){
         
         quizContainer.innerHTML = output.join("");
     });
+    numCorrect = 0;
     jQuiz.send();
     $("html, body").animate({ scrollTop: 0}, "slow")
 };
@@ -61,7 +62,6 @@ var getResults = function(){
         checkedQues.sort();
         if(checkedQues.toString() === currentQuestion.correctAnswer.toString()){
             numCorrect++;
-
             answerContainer.style.color = "lightgreen";
         }else{
             answerContainer.style.color = "red";
