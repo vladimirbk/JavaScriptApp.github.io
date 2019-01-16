@@ -5,7 +5,7 @@ const submitButton = document.querySelector("#submit");
 const shareButton = document.querySelector("#share");
 const saveButton = document.querySelector("#save");
 var listOfQuestions = [];
-        let numCorrect = 0;
+let numCorrect = 0;
 
 var initiateQuiz = function(){
     var jQuiz = new XMLHttpRequest();
@@ -41,7 +41,6 @@ var initiateQuiz = function(){
     });
     numCorrect = 0;
     jQuiz.send();
-    $("html, body").animate({ scrollTop: 0}, "slow")
 };
 
 var getResults = function(){
