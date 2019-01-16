@@ -49,7 +49,7 @@ var getResults = function(){
     }
     
     var answerContainers = quizContainer.querySelectorAll(".answers");
-    var corNum = numCorrect;
+
     listOfQuestions.forEach((currentQuestion, questionNumber) => {
         var answerContainer = answerContainers[questionNumber];
         var checkedQues = [];
