@@ -90,6 +90,10 @@ var share = function() {
 };
 
 var save = function(){
+    if (!resultsContainer.innerHTML){
+        return false;
+    }
+    
     var person = prompt("Please enter your name");
     
     saveName = JSON.parse(localStorage.getItem('personName')) || [];
