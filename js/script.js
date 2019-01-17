@@ -15,6 +15,7 @@ var initiateQuiz = function(){
     var quiz3 = "https://api.myjson.com/bins/j5bxo";
     var x = document.getElementById("chooseQuiz");
     var value = x.options[x.selectedIndex].value;
+    
     jQuiz.open("GET", value);
     jQuiz.addEventListener("load", function(){
         var data = JSON.parse(jQuiz.responseText);
