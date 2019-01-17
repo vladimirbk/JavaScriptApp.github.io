@@ -9,14 +9,18 @@ let numCorrect = 0;
 
 var initiateQuiz = function(){
     var jQuiz = new XMLHttpRequest();
-    var chooseQuiz = [quiz1,quiz2,quiz3];
-    var quiz1 = "https://api.myjson.com/bins/mpdkw";
-    var quiz2 = "https://api.myjson.com/bins/13yy4g";
-    var quiz3 = "https://api.myjson.com/bins/j5bxo";
+    
+    var chooseQuiz = ["https://api.myjson.com/bins/mpdkw","https://api.myjson.com/bins/13yy4g","https://api.myjson.com/bins/j5bxo"];
+    
+    //var quiz1 = "https://api.myjson.com/bins/mpdkw";
+    //var quiz2 = "https://api.myjson.com/bins/13yy4g";
+    //var quiz3 = "https://api.myjson.com/bins/j5bxo";
     var x = document.getElementById("chooseQuiz");
     var value = x.options[x.selectedIndex].value;
+    console.log(value);
     
-    jQuiz.open("GET", value);
+    jQuiz.open("GET", chooseQuiz[value]);
+    
     jQuiz.addEventListener("load", function(){
         var data = JSON.parse(jQuiz.responseText);
         
