@@ -13,14 +13,13 @@ var initiateQuiz = function(){
     var chooseQuiz = ["https://api.myjson.com/bins/mpdkw","https://api.myjson.com/bins/13yy4g","https://api.myjson.com/bins/j5bxo"];
     var x = document.getElementById("chooseQuiz");
     var value = x.options[x.selectedIndex].value;
-    console.log(value);
     
     jQuiz.open("GET", chooseQuiz[value]);
     
     jQuiz.addEventListener("load", function(){
         var data = JSON.parse(jQuiz.responseText);
         
-        listOfQuestions = data;
+        listOfQuestions = shuffle(data);
         resultsContainer.innerHTML = "";
         var output = [];
         quizContainer.innerHTML = '<img srs="images/loader.gif">';
@@ -30,10 +29,11 @@ var initiateQuiz = function(){
             
             for (letter in currentQuestion.answers){
                 answers.push(
-                    `<label>
+                   `<label>
                         <input type="checkbox" name="question${questionNumber}" class="clearMe" value="${letter}">
                         ${currentQuestion.answers[letter]}
                     </label>`
+                   
                 );
             }
             
@@ -49,6 +49,21 @@ var initiateQuiz = function(){
     numCorrect = 0;
     jQuiz.send();
 };
+
+var shuffle = function(arra1){
+    let ctr = arra1.length;
+    let temp;
+    let index;
+
+    while (ctr > 0) {
+        index = Math.floor(Math.random() * ctr);
+        ctr--;
+        temp = arra1[ctr];
+        arra1[ctr] = arra1[index];
+        arra1[index] = temp;
+    }
+    return arra1;
+}
 
 var getResults = function(){
     if (resultsContainer.innerHTML){
