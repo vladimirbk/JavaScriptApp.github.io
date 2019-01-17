@@ -11,10 +11,6 @@ var initiateQuiz = function(){
     var jQuiz = new XMLHttpRequest();
     
     var chooseQuiz = ["https://api.myjson.com/bins/mpdkw","https://api.myjson.com/bins/13yy4g","https://api.myjson.com/bins/j5bxo"];
-    
-    //var quiz1 = "https://api.myjson.com/bins/mpdkw";
-    //var quiz2 = "https://api.myjson.com/bins/13yy4g";
-    //var quiz3 = "https://api.myjson.com/bins/j5bxo";
     var x = document.getElementById("chooseQuiz");
     var value = x.options[x.selectedIndex].value;
     console.log(value);
@@ -106,11 +102,12 @@ var save = function(){
     }
     
     var person = prompt("Please enter your name");
-    
+    var personFixed = person.replace(/(<([^>]+)>)/ig,"");
+
     saveName = JSON.parse(localStorage.getItem('personName')) || [];
     
     newPlayer = {
-        user: person,
+        user: personFixed,
         result: numCorrect
     }
     
